@@ -1,6 +1,6 @@
 # Deterministic Semantic-Template Emphasis
 
-This block is produced by the deterministic `LightTemplate` extractor in the experiment code. Only fields whose values are not false, null, zero, or empty are included.
+This block is produced by the deterministic [`LightTemplate` extractor](../support/light_template.py) used in the experiment. Only fields whose values are not false, null, zero, or empty are included.
 
 ```text
 /* Deterministically extracted semantic emphasis:
@@ -24,4 +24,3 @@ This block is produced by the deterministic `LightTemplate` extractor in the exp
 ```
 
 This is runtime context, not a separate LLM template-extraction prompt.
-

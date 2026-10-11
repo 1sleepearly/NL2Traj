@@ -1,13 +1,11 @@
 # NL2Traj
 
-Selected public resources for **NL2Traj**, a natural-language query framework for trajectory databases.
+Public resources for **NL2Traj**, a natural-language query framework for trajectory databases.
 
-This repository intentionally contains two focused parts rather than the complete experimental codebase:
+The repository contains two main parts:
 
 1. [`dataset_generation/`](dataset_generation/) - the multi-agent pipeline used to construct and validate trajectory Text-to-SQL test cases and in-context examples. Its agent prompts are part of this module.
-2. [`prompts/`](prompts/) - selected prompt components used by the NL2Traj method during experiments, organized according to the paper.
-
-The repository does not include the private trajectory database, the full benchmark, complete experiment runners, baseline implementations, model credentials, or all internal research artifacts.
+2. [`prompts/`](prompts/) - prompt components used by the NL2Traj method during experiments, organized according to the paper.
 
 ## Repository map
 
@@ -38,11 +36,3 @@ Generation requires an OpenAI-compatible chat-completions endpoint and a Postgre
 - [Multi-agent dataset construction](docs/dataset-generation.md)
 - [NL2Traj method overview](docs/nl2traj-method.md)
 - [Prompt organization](prompts/README.md)
-
-## Public scope
-
-The prompt files are selected public materials. They preserve the method structure and the distinction between spatial-database knowledge, trajectory-processing knowledge, examples, and refinement feedback. They should not be interpreted as a release of every prompt variant or every experimental configuration used during development.
-
-## Citation and license
-
-Citation metadata and a software/content license will be added after the corresponding publication and release terms are finalized.

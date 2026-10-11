@@ -1,11 +1,10 @@
 # SQL Output Contract
 
 ```text
-Generate one directly executable PostgreSQL SQL query.
-The database has PostGIS and MobilityDB installed.
-Use only the supplied tables, fields, and available functions; do not invent fields.
-The query may begin with SELECT or WITH.
-Return SQL only, without explanation.
-Question: {{QUESTION}}
+请生成一条可直接执行的 PostgreSQL SQL 查询。
+数据库已安装 PostGIS 和 MobilityDB。
+只能使用给定的表、字段和可用函数，不要虚构字段。
+查询可以用 SELECT 或 WITH 开头。
+只输出 SQL，不要解释。
+问题：{{QUESTION}}
 ```
-
