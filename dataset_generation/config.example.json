@@ -19,9 +19,8 @@
   },
   "schema_path": "dataset_generation/schemas/database.example.sql",
   "operator_knowledge_paths": [
-    "prompts/sql_completion/knowledge/spatial_database_knowledge.md",
-    "prompts/sql_completion/knowledge/trajectory_knowledge.md"
+    "prompts/components/spatial_database_knowledge.md",
+    "prompts/components/trajectory_knowledge.md"
   ],
   "output_root": "generated_datasets"
 }
-

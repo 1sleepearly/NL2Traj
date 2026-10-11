@@ -4,13 +4,13 @@ Natural-language trajectory queries combine ordinary relational structure with t
 
 NL2Traj addresses this problem with three connected modules.
 
-## 1. Trajectory query skeleton generation
+## 1. Deterministic semantic emphasis and structural context
 
-The method parses the question into structured trajectory constraints, grounds those constraints to native database DDL, retrieves structurally similar logic-masked examples, and produces an intermediate query skeleton. The skeleton fixes tables, fields, joins, filters, aggregation, result grain, and placeholders for trajectory-specific operations.
+The formal implementation deterministically extracts a lightweight semantic emphasis from the question. It records signals such as temporal role, origin, destination, passing-through, requested outputs, ordering, ratios, and precision. This block supports prompt emphasis, example ranking, and post-generation checks; it is not generated through a separate LLM prompt.
 
 ## 2. Trajectory-semantic SQL completion
 
-The skeleton is completed under two complementary knowledge components:
+The original question, lightweight semantic emphasis, native database DDL, and retrieved structural examples are assembled with two complementary knowledge components:
 
 - geometry-level spatial-database rules for points, polygons, complete trajectory lines, predicates, and metric measurements;
 - trajectory-level processing rules for temporal restriction, spatial clipping, local-segment extraction, conversion, duration, distance, and speed.
@@ -22,4 +22,3 @@ Keeping these components separate makes the selected computation object explicit
 Candidate SQL is executed and checked against the trajectory constraints extracted from the question. Database errors and trajectory-semantic mismatches become targeted feedback. Refinement repairs the detected portion while preserving the valid skeleton and computation-object assignments.
 
 The selected public prompt components corresponding to these modules are documented in [`../prompts/`](../prompts/).
-
