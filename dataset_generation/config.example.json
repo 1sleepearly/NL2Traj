@@ -1,0 +1,27 @@
+{
+  "dataset_kind": "test",
+  "run_name": "public_demo",
+  "language": "Chinese",
+  "counts": {
+    "Easy": 1,
+    "Middle": 1,
+    "Hard": 1
+  },
+  "max_rounds": 3,
+  "candidates_per_request": 2,
+  "allow_empty_results": false,
+  "max_result_rows": 200,
+  "generator": {
+    "provider_prefix": "DEEPSEEK"
+  },
+  "reviewer": {
+    "provider_prefix": "DEEPSEEK"
+  },
+  "schema_path": "dataset_generation/schemas/database.example.sql",
+  "operator_knowledge_paths": [
+    "prompts/sql_completion/knowledge/spatial_database_knowledge.md",
+    "prompts/sql_completion/knowledge/trajectory_knowledge.md"
+  ],
+  "output_root": "generated_datasets"
+}
+

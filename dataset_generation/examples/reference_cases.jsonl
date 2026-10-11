@@ -1,0 +1,2 @@
+{"id":"DEMO001","question":"查询指定日期的轨迹总数。","gold_sql":"SELECT COUNT(*) FROM trips WHERE trip_date = DATE '2020-01-01'","difficulty":"Easy","task_type":"basic_filter_count"}
+
