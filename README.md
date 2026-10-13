@@ -35,4 +35,5 @@ Generation requires an OpenAI-compatible chat-completions endpoint and a Postgre
 
 - [Multi-agent dataset construction](docs/dataset-generation.md)
 - [NL2Traj method overview](docs/nl2traj-method.md)
+- [Experimental settings](docs/experimental-settings.md)
 - [Prompt organization](prompts/README.md)
