@@ -1,4 +1,4 @@
-"""Deterministic question-to-SQL semantic checks used by Traj-P selection.
+"""Deterministic question-to-SQL semantic checks used by NL2Traj selection.
 
 These checks intentionally cover high-confidence trajectory distinctions.  They
 are conservative: uncertain interpretations become warnings rather than hard

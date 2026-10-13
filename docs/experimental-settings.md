@@ -1,10 +1,10 @@
 # Experimental settings
 
-This document records the main settings that affect the comparison of DAIL-SQL, SSpa, DIN-SQL, and Traj-P. Transport-level API retries are separate from algorithmic SQL refinement.
+This document records the main settings that affect the comparison of DAIL-SQL, SSpa, DIN-SQL, and NL2Traj. Transport-level API retries are separate from algorithmic SQL refinement.
 
 ## Method comparison
 
-| Setting | DAIL-SQL | SSpa | DIN-SQL | Traj-P |
+| Setting | DAIL-SQL | SSpa | DIN-SQL | NL2Traj |
 | --- | --- | --- | --- | --- |
 | Few-shot context | Top-2 dynamically retrieved examples | Top-2 dynamically retrieved examples | Fixed stage-level demonstrations; no dynamic Top-K retrieval | Top-2 dynamically retrieved examples |
 | Example isolation | Retrieval is restricted to the example pool of the current SQL-skeleton-disjoint fold; target gold SQL is not included in the prompt | Same as DAIL-SQL | Not applicable; fixed cross-domain demonstrations are used | Exact questions, masked-equivalent questions, and examples with the same lexical gold-SQL skeleton are excluded; gold SQL is used only as an exclusion key |
@@ -31,4 +31,4 @@ Temperatures in the comparison table are the values requested by each method in 
 
 ## Run protocol
 
-Each model–method–dataset configuration in the standard experiment matrix is run once without an additional stochastic repeat. The leakage-controlled template-disjoint evaluation uses four folds; each model–method–fold configuration is run once and results are aggregated across folds.
+Each model–method–dataset configuration in the standard experiment matrix is run once without an additional stochastic repeat. The leakage-controlled template-disjoint evaluation uses four folds for DAIL-SQL, SSpa, NL2Traj, and their included variants. Each model–method–fold configuration is run once and results are aggregated across folds.
