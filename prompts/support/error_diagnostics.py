@@ -57,22 +57,6 @@ def diagnose_execution_error(error: str) -> ErrorDiagnosis:
     )
 
 
-def extract_sspa_schema_tip(error: str) -> str | None:
-    """Paper-bounded SSpa tips: missing relation/column/function or ambiguity only."""
-    detail = str(error).removeprefix("ERROR:").strip()
-    patterns = (
-        (r'relation "([^"]+)" does not exist', 'The table "{}" does not exist and should not be used.'),
-        (r'column "([^"]+)" does not exist', 'The column "{}" does not exist and should not be used.'),
-        (r'function ([^(\s]+)', 'The function "{}" is unavailable with the generated signature.'),
-        (r'column reference "([^"]+)" is ambiguous', 'The column "{}" is ambiguous; qualify it with a table alias.'),
-    )
-    for pattern, template in patterns:
-        match = re.search(pattern, detail, flags=re.IGNORECASE)
-        if match:
-            return template.format(match.group(1))
-    return None
-
-
 def diagnose_semantic_issues(issues) -> ErrorDiagnosis:
     codes = {getattr(issue, "code", "") for issue in issues}
     if codes & {"origin_missing", "destination_missing", "passing_missing", "negation_missing"}:

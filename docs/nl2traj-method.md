@@ -1,12 +1,12 @@
 # NL2Traj prompt-material guide
 
-This document explains how the files currently published in [`prompts/`](../prompts/) relate to one another. It is a repository guide, not a complete description of the private experiment runner.
+This document explains how the published prompt materials relate to the runnable implementation in [`nl2traj/`](../nl2traj/).
 
 ## Directory summary
 
 The `prompts/` directory publishes the selected materials that define how the NL2Traj experiment supplies knowledge and context to the model and how it constructs targeted repair feedback. It combines fixed Markdown components with deterministic Python support code because parts of the runtime prompt—semantic emphasis and typed feedback—depend on the current question, generated SQL, execution result, and validation outcome.
 
-The directory covers two connected stages. Initial generation combines spatial knowledge, trajectory knowledge, shared conventions, database context, retrieved examples, deterministic semantic emphasis, and the SQL output contract. If a candidate fails execution or semantic validation, repair reconstructs the same prompt and inserts a typed correction request together with the previous SQL. The complete example pool and full experiment runner are outside the public scope.
+The prompt directory covers two connected stages. Initial generation combines spatial knowledge, trajectory knowledge, shared conventions, database context, retrieved examples, deterministic semantic emphasis, and the SQL output contract. If a candidate fails execution or semantic validation, repair reconstructs the same prompt and inserts a typed correction request together with the previous SQL. The shared example pool is published in [`data/examples/examples.xlsx`](../data/examples/examples.xlsx), and the full runner is published in [`nl2traj/runner.py`](../nl2traj/runner.py).
 
 ```text
 question + fixed prompt components + retrieved examples
@@ -40,7 +40,7 @@ The files below [`prompts/components/`](../prompts/components/) document the fix
 - [`trajectory_knowledge.md`](../prompts/components/trajectory_knowledge.md) contains the frozen trajectory-domain knowledge used by NL2Traj.
 - [`time_conventions.md`](../prompts/components/time_conventions.md) contains the benchmark interval, peak-period, and timezone conventions.
 - [`database_context.md`](../prompts/components/database_context.md) contains the published `trips` and `districts` DDL plus neutral spatial schema notes.
-- [`example_context.md`](../prompts/components/example_context.md) records the exact Q/Hint/A few-shot wrapper, `K=2`, retrieval ordering, and strict exclusion behavior. The complete example pool is not published here.
+- [`example_context.md`](../prompts/components/example_context.md) records the exact Q/Hint/A few-shot wrapper, `K=2`, retrieval ordering, and strict exclusion behavior. The corresponding pool is published under `data/examples/`.
 - [`semantic_template_emphasis.md`](../prompts/components/semantic_template_emphasis.md) records the runtime text format produced from a question by `light_template.py`.
 - [`feedback_context.md`](../prompts/components/feedback_context.md) records the typed repair block, execution and semantic diagnosis categories, previous-SQL insertion, and repair-round policy.
 - [`system_prompts.md`](../prompts/components/system_prompts.md) contains the system messages for initial generation and feedback-based repair.
@@ -56,13 +56,13 @@ Some inserted sections cannot be represented by fixed Markdown alone. [`prompts/
 - [`semantic_validator.py`](../prompts/support/semantic_validator.py) derives validation issues from the question, SQL, and execution result. Its issue messages become the `Observed detail` portion of semantic repair feedback.
 - [`error_diagnostics.py`](../prompts/support/error_diagnostics.py) classifies database errors and semantic issues and formats the structured correction request.
 
-These files are support logic rather than standalone prompts. They are kept under `prompts/` because they determine the dynamic content inserted into the published prompt structure.
+These files are support logic rather than standalone prompts. Runnable package copies are under [`nl2traj/`](../nl2traj/); the copies under `prompts/support/` keep the prompt documentation self-contained.
 
 ## Initial generation and repair
 
 For initial generation, the experiment assembles the fixed knowledge and context, creates the semantic-emphasis block from the question, leaves the typed-feedback section empty, and uses the generation system prompt.
 
-For repair, the same assembly is rebuilt. The validator or execution diagnosis supplies the structured feedback and previous SQL, and the repair system prompt is used. The public files describe prompt construction and checking, but they do not include the complete candidate-generation, voting, execution, and final-selection runner.
+For repair, the same assembly is rebuilt. The validator or execution diagnosis supplies the structured feedback and previous SQL, and the repair system prompt is used. Candidate generation, database execution, validation, agreement scoring, targeted repair, and final selection are implemented by [`nl2traj/runner.py`](../nl2traj/runner.py).
 
 ## Relationship to dataset generation
 

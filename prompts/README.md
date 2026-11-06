@@ -1,6 +1,6 @@
 # NL2Traj Experimental Prompt
 
-This directory publishes the fixed prompt text and assembly structure used by the formal NL2Traj experiment. Runtime values are represented by placeholders. Historical prompts, baseline prompts, ablation variants, the complete example set, and run-specific feedback are outside this release.
+This directory publishes the fixed prompt text and assembly structure used by the formal NL2Traj experiment. Runtime values are represented by placeholders. The shared example set is published separately under [`data/examples/`](../data/examples/), and the runnable implementation is under [`nl2traj/`](../nl2traj/).
 
 ```text
 prompts/
